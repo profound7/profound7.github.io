@@ -1,0 +1,14 @@
+!.gitignore
+
+# Directories #
+###############
+_site/
+.sass-cache/
+.jekyll-metadata
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db

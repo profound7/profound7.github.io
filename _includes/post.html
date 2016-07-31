@@ -1,0 +1,21 @@
+<div class="post">
+    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+
+    <ul class="meta">
+        <li><small class="date">{{ post.date | date_to_string }}</small></li>
+        <li><small class="author">{{ post.author }}</small></li>
+        <li><span class="categories">
+            {% for cat in post.categories %}
+                <a class="label label-info" href="/notes/categories/#{{ cat | slugify }}"><i class="fa fa-tag" aria-hidden="true"></i> {{ cat }}</a>
+            {% endfor %}
+        </span></li>
+    </ul>
+
+    <div class="content">
+        {% if page.layout == 'post' %}
+            {{ post.content }}
+        {% else %}
+            {{ post.excerpt }}
+        {% endif %}
+    </div>
+</div>

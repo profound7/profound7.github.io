@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div class="row">
+    <div class="col-md-9">
+        {{ content }}
+    </div>
+
+    <div class="col-md-3">
+        <h2>side bar</h2>
+
+        {% assign sorted_categories = site.categories | sort %}
+        {% for cat in sorted_categories %}
+            {{ cat | first }} <br>
+        {% endfor %}
+    </div>
+</div>

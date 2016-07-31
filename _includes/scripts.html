@@ -1,0 +1,19 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/autolinker/prism-autolinker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/command-line/prism-command-line.min.js"></script>
+
+
+<script>
+    Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/';
+
+    $(function() {
+        $("pre > code:not(.language-bash, .language-batch)").addClass("line-numbers");
+        $("pre > code.language-bash").parent().addClass("command-line");
+        $("pre > code.language-batch").parent().addClass("command-line").attr("data-prompt", "C:\\Users\\Me\\");
+    })
+</script>

@@ -1,2 +1,18 @@
-name: Munir Hussin
+# meta
+author:
+    name: Munir Hussin
+    url: https://profound7.github.io
+    github: https://github.com/profound7
+    twitter: https://twitter.com/profound7
+
+# setup
+gems: [jekyll-paginate]
+excerpt_separator: <!--more-->
+permalink: /notes/:year/:month/:day/:title
+paginate: 5
+paginate_path: '/notes/page:num/'
 markdown: kramdown
+kramdown:
+    input: GFM
+    auto_ids: true
+    syntax_highlighter: rogue

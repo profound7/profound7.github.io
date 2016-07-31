@@ -1,4 +1,10 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    min-height: 2000px;
     padding-top: 70px;
+    margin-bottom: 90px;
 }

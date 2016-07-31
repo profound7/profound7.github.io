@@ -1,0 +1,12 @@
+---
+layout: default
+title: Notes
+description: Notes and short essays by Munir Hussin
+---
+<div class="posts">
+
+    {% for post in paginator.posts %}
+        {% include post.html %}
+    {% endfor %}
+
+</div>

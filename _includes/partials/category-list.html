@@ -1,0 +1,12 @@
+<ul class="category-list">
+    {% for cat_data in sorted_categories %}
+        {% assign cat = cat_data | first %}
+        <li>
+            <a href="#{{ cat | slugify }}" class="codinfox-tag-mark">
+                <span class="label label-info">
+                    <i class="fa fa-tag" aria-hidden="true"></i> {{ cat }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

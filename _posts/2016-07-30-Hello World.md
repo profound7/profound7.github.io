@@ -17,11 +17,14 @@ programming, tutorials, and sometimes other stuff. This site is built using
 [KaTeX](https://khan.github.io/KaTeX/). Stylesheets written in
 [Scss](http://sass-lang.com/). Comments powered by [Disqus](https://disqus.com/).
 
-I designed this theme using Bootstrap as the base. Like it? It's [open source](https://github.com/profound7/profound7.github.io). Fork it, customize
-it, and use it. But do remember to change the identifying keys for Disqus and
-Google Analytics, which is all in the `_config.yml` file. Spot anything wrong
-in the theme? [Create a new issue](https://github.com/profound7/profound7.github.io/issues)
-and report the bug.
+I designed this theme using Bootstrap as the base. Like it? It's
+[open source][repo]. Fork it, customize it, and use it. But do remember to
+change the identifying keys for Disqus and Google Analytics, which is all in
+the `_config.yml` file. Spot anything wrong with the theme?
+[Create a new issue][issue] and report the bug.
+
+[repo]: https://github.com/profound7/profound7.github.io
+[issue]: https://github.com/profound7/profound7.github.io/issues
 
 Formatting previews after the jump.
 

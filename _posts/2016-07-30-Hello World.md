@@ -6,7 +6,7 @@ author: Munir
 comments: true
 categories: [Dev]
 tags: [Hello World, Jekyll, GitHub, GitHub Pages]
-image: https://upload.wikimedia.org/wikipedia/commons/7/78/Scratch_Hello_World.png
+image: //upload.wikimedia.org/wikipedia/commons/7/78/Scratch_Hello_World.png
 ---
 
 Obligatory hello world first post. This site is where I'll blog about mostly

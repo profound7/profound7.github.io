@@ -7,7 +7,7 @@ comments: true
 categories: [Dev]
 tags: [Haxe, Tutorial]
 image:
-    src: http://i.imgur.com/ECiAiDI.png
+    src: //i.imgur.com/ECiAiDI.png
     width: 150px
 ---
 

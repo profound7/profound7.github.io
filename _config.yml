@@ -36,5 +36,4 @@ kramdown:
     input: GFM
     auto_ids: true
     auto_id_stripping: true
-    syntax_highlighter: rogue
     parse_block_html: true

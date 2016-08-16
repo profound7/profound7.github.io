@@ -257,7 +257,7 @@ still some repetition, and we can simplify it further by using `--each`.
 
 ## Haxe Resources
 
-![It's dangerous to go alone! Take this.](http://i.imgur.com/iWbLois.png){:width="500px"}
+![It's dangerous to go alone! Take this.](//i.imgur.com/iWbLois.png){:width="500px"}
 
 ### References and Frameworks
 

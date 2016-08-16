@@ -1,0 +1,19 @@
+<h2>Categories</h2>
+
+<ul class="category-list">
+    {% assign sorted_categories = site.categories | sort %}
+    {% assign categories_arg = sorted_categories %}
+    
+    {% for cat_data in categories_arg %}
+        {% if cat_data[0] != nil %}
+            {% assign cat = cat_data | first %}
+        {% else %}
+            {% assign cat = cat_data %}
+        {% endif %}
+        <li>
+            <a href="/blog/categories/#{{ cat | slugify }}" class="label label-success">
+                <i class="fa fa-tag" aria-hidden="true"></i> {{ cat }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

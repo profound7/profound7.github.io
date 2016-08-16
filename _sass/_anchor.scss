@@ -1,0 +1,62 @@
+
+a {
+    transition:
+        color 0.2s,
+        background-color 0.3s;
+    
+    color: $primary-color;
+    
+    &:hover, &:focus {
+        text-decoration: none;
+        color: darken($primary-color, 20%);
+        border-bottom: 1px solid darken($primary-color, 20%);
+    }
+    
+    &.label {
+        //font-size: inherit;
+        font-weight: normal;
+        padding: 0.2em 0.6em;
+        
+        &:hover, &:focus {
+            border-bottom: none;
+        }
+    }
+    
+    // for #read-more anchors
+    &.anchor {
+        /*display: block;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+        position: relative;
+        top: -150px;*/
+        display: block;
+        position: relative;
+        text-align: center;
+        //margin-bottom: -1.5em;
+        margin: 1.5em 0;
+        
+        > span {
+            position: relative;
+            background-color: #fff;
+            padding: 0.2em 1em;
+            font-size: 0.67em;
+            color: #ccc;
+        }
+        
+        &:hover, &:focus {
+            border-bottom: none;
+        }
+        
+        &::before {
+            content: "";
+            position: absolute;
+            border-bottom: 1px dashed #ccc;
+            width: 100%;
+            bottom: 50%;
+            left: 0;
+            z-index: 0;
+        }
+        
+    }
+}

@@ -1,0 +1,135 @@
+
+// posts
+.posts {
+    margin-top: 3em;
+    
+    .post {
+
+        padding-bottom: 1em;
+        margin-bottom: 2em;
+
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        > h1 {
+            //border-bottom: 1px solid #eee;
+            //padding-bottom: 0.3em;
+            font-size: 2em;
+            font-weight: normal;
+            margin-bottom: 0.2em;
+            
+            > a {
+                &:hover, &:focus {
+                    text-decoration: none;
+                    border-bottom: none;
+                    background-color: $primary-color;
+                    color: #fff;
+                }
+            }
+        }
+        
+        img[rel="post-image"] {
+            margin-right: 1em;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        /*> .meta {
+            margin-bottom: 2em;
+        }*/
+    }
+}
+
+
+// table of contents
+nav.table-of-contents ol > li:before {
+    padding-left: 0;
+}
+
+ol#markdown-toc {
+    display: table;
+    font-size: 0.9em;
+    background-color: #f9f9f9;
+    //background-color: #f5f2f0;
+    border: 1px solid #ccc;
+    padding: 0.5em 1.2em 0.9em;
+    //padding: 1em;
+    border-radius: 4px;
+    
+    &:before {
+        content: "Contents";
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 0.4em;
+        //border-bottom: 1px solid #ddd;
+    }
+}
+
+.footnotes {
+    
+    /*&:before {
+        content: "Footnotes";
+        display: block;
+        
+        // h2
+        margin: 1.5em 0 0.7em;
+        font-size: 1.5em;
+        font-weight: bold;
+        
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.3em;
+    }*/
+    
+    > ol {
+        font-size: 0.8em;
+        
+        li > p {
+            margin-bottom: 0;
+        }
+        
+        li.highlight {
+            background-color: #ff6;
+        }
+    }
+}
+
+
+// post meta
+ul.meta {
+    display: block;
+    list-style: none;
+    margin: 0 0 1.5em 0;
+    //margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+    
+    > li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        color: #999;
+
+        &::after {
+            content: "|";
+            color: #ccc;
+            margin-left: 0.2em;
+            margin-right: 0.2em;
+        }
+
+        &:last-child::after {
+            content: none;
+            margin: 0;
+        }
+    }
+}
+
+// comments
+#disqus_thread {
+    margin-top: 4em;
+}

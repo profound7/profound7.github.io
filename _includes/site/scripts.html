@@ -1,19 +1,149 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 
+<!-- prism syntax highlighting -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/autoloader/prism-autoloader.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/autolinker/prism-autolinker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/command-line/prism-command-line.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+<script src="/js/prism-hxml.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+<script id="dsq-count-scr" src="//{{ site.author.disqus }}.disqus.com/count.js" async></script>
 
 <script>
     Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/';
-
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+        'left-trim': true,
+        'right-trim': true,
+    });
+    
+    var $root = $('html, body');
+    
+    function onHashChange() {
+        var hash = window.location.hash;
+        if (hash.length !== 0) {
+            
+            if (hash.substr(0, 4) === "#fn:") {
+                //var hash = hash.replace(":", "\\:");
+                $(".footnotes li").removeClass("highlight");
+                //alert(hash);
+                //$("#fn\\:footnote").addClass("highlight");
+                $(document.getElementById(hash.substr(1))).addClass("highlight");
+            }
+            
+            window.scrollTo(window.scrollX, window.scrollY - 100);
+        }
+    }
+    
     $(function() {
+        // prism syntax highlighting
         $("pre > code:not(.language-bash, .language-batch)").addClass("line-numbers");
         $("pre > code.language-bash").parent().addClass("command-line");
         $("pre > code.language-batch").parent().addClass("command-line").attr("data-prompt", "C:\\Users\\Me\\");
-    })
+        
+        // moment.js
+        //moment.locale();
+        
+        $("[data-moment]").each(function() {
+            var $this = $(this);
+            var timestamp = $this.data("moment");
+            var mTime = moment(timestamp);
+            var relTime = mTime.fromNow();
+            var fullTime = mTime.format("LLLL");
+            
+            $this.attr("title", fullTime);
+            $this.text(relTime);
+        });
+        
+        // katex
+        $("script[type='math/tex']").replaceWith(function() {
+            var tex = $(this).text();
+            return "<span class='inline-equation'>" + katex.renderToString(tex) + "</span>";
+        });
+
+        $("script[type='math/tex; mode=display']").replaceWith(function() {
+            var tex = $(this).text();
+            return "<div class='equation'>" + katex.renderToString("\\displaystyle "+tex) + "</div>";
+        });
+        
+        // bootstrap tables
+        $(".contents table").addClass("table table-bordered table-striped");
+        
+        // add header for footnotes and add it to TOC if it exists
+        
+        function makeTocLink(label, hash) {
+            return "<li><a href='#hash'>label</a></li>"
+                .replace(/hash/g, hash)
+                .replace(/label/g, label);
+        }
+        
+        function makeHeader(label, hash, tag) {    
+            return "<tag id='hash'>label</tag>"
+                .replace(/hash/g, hash)
+                .replace(/label/g, label)
+                .replace(/tag/g, tag);
+        }
+        
+        $(".posts.single .footnotes").before(function() {
+            $("#markdown-toc", $(this).parent()).append(makeTocLink("Footnotes", "footnotes"));
+            return makeHeader("Footnotes", "footnotes", "h2");
+        });
+        
+        /*$("#disqus_thread").before(function() {
+            $("#markdown-toc", $(this).parent()).append(makeTocLink("Comments", "comments"));
+            return makeHeader("Comments", "comments", "h2");
+        });*/
+        
+        // aside-table-of-contents
+        var $toc_ol = $("ol#markdown-toc");
+        
+        if ($toc_ol.length > 0) {
+            var html = $toc_ol.html();
+            var $toc = $("<ol class='nav'></ol>").html(html);
+            var $toc_nav = $("aside nav.table-of-contents");
+            
+            $toc_nav.html($toc);
+            $("ol > li > ol > li > ol", $toc_nav).remove();
+            //$("ol", $toc_nav).addClass("nav");
+            $("section.aside-toc").removeClass("hide");
+        } else {
+            $("section.aside-toc").remove();
+        }
+        
+        //var asideWidth = 0;
+        var $asideParent = $(".aside-parent");
+        
+        $.fn.cssVal = function(prop) {
+            var px = $(this).css(prop);
+            return parseFloat(px.substr(0, px.length - 2));
+        }
+        
+        $("aside").on("affix.bs.affix", function() {
+            var $this = $(this);
+            var paddingLeft = $this.cssVal("paddingLeft");
+            var borderLeft = $this.cssVal("borderLeft");
+            
+            $this.width($asideParent.width() - paddingLeft - borderLeft);
+        });
+        
+        $(window).resize(function() {
+            var $aside = $("aside");
+            var paddingLeft = $aside.cssVal("paddingLeft");
+            var borderLeft = $aside.cssVal("borderLeft");
+            
+            $aside.width($asideParent.width() - paddingLeft - borderLeft);
+        });
+        
+        $("body").scrollspy({
+            target: ".scrollspy",
+            offset: 150
+        });
+    });
+    
+    $(window).on("hashchange", onHashChange);
+    setTimeout(onHashChange, 1);
 </script>

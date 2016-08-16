@@ -1,12 +1,15 @@
 ---
-layout: default
+layout: 2-columns
+asides: [categories.html, tags.html]
 title: Notes
 description: Notes and short essays by Munir Hussin
 ---
-<div class="posts">
+<div class="posts multi">
 
     {% for post in paginator.posts %}
         {% include partials/post.html %}
     {% endfor %}
-
+    
+    {% include partials/pagination.html %}
+    
 </div>

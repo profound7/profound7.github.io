@@ -15,7 +15,6 @@
             <ul class="nav navbar-nav">
                 {% assign page_parts = page.url | split:'/' %}
                 {% assign page_part1 = page_parts[1] %}
-                <li ><a href="#">{{ current_url }}</a></li>
                 {% for link in layout.nav %}
                     {% assign current = nil %}
                     {% assign link_parts = link.url | split:'/' %}
@@ -25,22 +24,31 @@
                     <li class="{{ current }}"><a href="{{ link.url }}">{{ link.text }}</a></li>
                 {% endfor %}
             </ul>
+            
             <ul class="nav navbar-nav navbar-right">
-
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle"
                         data-toggle="dropdown" role="button"
                         aria-haspopup="true"
                         aria-expanded="false">Projects <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header">moon libraries for haxe</li>
-                        <li><a href="#">moon-core</a></li>
-                        <li><a href="#">moon-run</a></li>
-                        <li><a href="#">moon-peg</a></li>
-                        <li><a href="#">moon-ai</a></li>
-                        
-                        <li class="dropdown-header">potions</li>
-                        <li><a href="#">markup potion</a></li>
+                        {% for link in layout.projects %}
+                            {% if link.github %}
+                                <li>
+                                    <a href="https://github.com/{{ site.author.github }}/{{ link.github }}">
+                                        {% if link.text %}{{ link.text }}{% else %}{{ link.github }}{% endif %}
+                                    </a>
+                                </li>
+                            {% elsif link.url %}
+                                <li>
+                                    <a href="{{ link.url }}">
+                                        {% if link.text %}{{ link.text }}{% else %}{{ link.url }}{% endif %}
+                                    </a>
+                                </li>
+                            {% elsif link.text %}
+                                <li class="dropdown-header">{{ link.text }}</li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </li>
 

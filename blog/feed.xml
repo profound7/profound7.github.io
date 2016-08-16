@@ -1,0 +1,44 @@
+---
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title type="text" xml:lang="en">{{ site.root_desc }}</title>
+	<link type="application/atom+xml" href="{{ site.author.url }}/blog/feed.xml" rel="self"/>
+ 	<link type="text" href="{{ site.author.url }}" rel="alternate"/>
+	<updated>{{ site.time | date_to_xmlschema }}</updated>
+	<id>{{ site.author.url }}</id>
+	<author>
+		<name>{{ site.author.name }}</name>
+	</author>
+	<rights>&#169; {{ site.time | date: '%Y' }} profound7</rights>
+	
+	{% for post in site.posts limit:20 %}
+    	<entry>
+    		<title>{{ post.title }}</title>
+    		<link href="{{ site.author.url }}{{ post.url }}"/>
+    		<updated>{{ post.date | date: "%FT%T+08:00" }}</updated>
+    		<id>{{ site.author.url }}{{ post.url }}</id>
+    		<content type="html">
+				{% if post.image %}
+					{% capture image %}
+		                <img rel="post-image"
+		                    {% if post.image.src %} src="{{ post.image.src }}" {% else %} src="{{ post.image }}" {% endif %}
+		                    {% if post.image.width %} width="{{ post.image.width }}" {% else %} width="150px" {% endif %}
+		                    {% if post.image.class %} class="{{ post.image.class }}" {% else %} class="pull-left" {% endif %}
+		                />
+					{% endcapture %}
+                    {{ image | xml_escape }}
+	            {% endif %}
+                {{ post.excerpt | xml_escape }}
+                {% assign content_length = post.content | number_of_words %}
+                {% assign excerpt_length = post.excerpt | number_of_words %}
+                {% if excerpt_length != content_length %}
+                    {% capture more %}
+                        <p><a href="{{ post.url }}#read-more">Read more&hellip;</a></p>
+                    {% endcapture %}
+                    {{ more | xml_escape }}
+                {% endif %}
+            </content>
+    	</entry>
+	{% endfor %}
+</feed>

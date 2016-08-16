@@ -1,0 +1,12 @@
+{% for tag_data in tags_arg %}
+    {% if tag_data[0] != nil %}
+        {% assign tag = tag_data | first %}
+    {% else %}
+        {% assign tag = tag_data %}
+    {% endif %}
+    <li>
+        <a href="/blog/tags/#{{ tag | slugify }}" class="label label-info">
+            <i class="fa fa-tag" aria-hidden="true"></i> {{ tag }}
+        </a>
+    </li>
+{% endfor %}

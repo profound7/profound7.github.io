@@ -1,45 +1,29 @@
 ---
 nav:
-    - text: Home
-      url: /
-    - text: About
-      url: /about/
-    - text: Notes
-      url: /notes/
-      layout: post
+    - { text: Home, url: "/" }
+    - { text: About, url: "/about/" }
+    - { text: Blog, url: "/blog/" }
+      
+projects:
+    - text: Moon Libraries for Haxe
+    - github: moon-core
+    - github: moon-run
+    - github: moon-peg
+    - github: moon-ai
+    - text: Design
+    - { text: This Site, url: "https://github.com/profound7/profound7.github.io" }
 ---
 <!DOCTYPE html>
 <html lang="en">
-
+    
     {% include site/head.html %}
-
+    
     <body>
         {% include site/nav.html %}
-
-        <div class="container">
-
-            {{ content }}
-
-        </div>
-
-        <footer class="footer">
-            <div class="container">
-                <div>
-                    <ul class="pull-right social">
-                        <li><a href="{{ site.author.github }}"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                        <li><a href="{{ site.author.twitter }}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    </ul>
-
-                    <span class="text-muted">
-                        Powered by <a href="https://jekyllrb.com">Jekyll</a>.
-                        Built with <a href="https://getbootstrap.com/">Bootstrap</a>.
-                        <br>
-                        &copy; {{ site.time | date: '%Y' }} profound7
-                    </span>
-                </div>
-            </div>
-        </footer>
-
+        
+        {{ content }}
+        
+        {% include site/foot.html %}
         {% include site/scripts.html %}
     </body>
 </html>

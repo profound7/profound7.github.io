@@ -2,17 +2,38 @@
 author:
     name: Munir Hussin
     url: https://profound7.github.io
-    github: https://github.com/profound7
-    twitter: https://twitter.com/profound7
+    github: profound7
+    twitter: profound7
+    disqus: profound7
+
+meta:
+    categories:
+        - Dev
+        - Comics
+        - Movies
+    tags:
+        - Haxe
+        - Macro
+        - JavaScript
+        - Math
+        - Cross Platform
 
 # setup
-gems: [jekyll-paginate]
+gems:
+    - jekyll-paginate
+    - jekyll-mentions
+
 excerpt_separator: <!--more-->
-permalink: /notes/:year/:month/:day/:title
+permalink: /blog/:categories/:slug/
 paginate: 5
-paginate_path: '/notes/page:num/'
+paginate_path: '/blog/page:num/'
+
+timezone: Asia/Singapore
+
 markdown: kramdown
 kramdown:
     input: GFM
     auto_ids: true
+    auto_id_stripping: true
     syntax_highlighter: rogue
+    parse_block_html: true

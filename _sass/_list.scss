@@ -1,0 +1,38 @@
+
+ul {
+    line-height: 1.5em;
+}
+
+// nested list numbering
+// http://stackoverflow.com/a/26245056/3761791
+ol {
+    list-style-type: none;
+    counter-reset: item;
+    margin: 0 0 1.5em;
+    padding: 0;
+    line-height: 1.5em;
+}
+
+ol > li {
+    display: table;
+    counter-increment: item;
+    //margin-bottom: 0.6em;
+}
+
+ol > li:before {
+    //content: counters(item, "%") "$ ";
+    content: counter(item) ". ";
+    display: table-cell;
+    padding-right: 0.6em;
+    
+    // to make it align with unordered lists as well
+    padding-left: 1em;
+}
+
+li ol > li {
+    margin: 0;
+}
+
+li ol > li:before {
+    content: counters(item, ".") ". ";
+}
